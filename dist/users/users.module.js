@@ -12,12 +12,13 @@ const jwt_module_1 = require("../jwt/jwt.module");
 const users_controller_1 = require("./users.controller");
 const users_service_1 = require("./users.service");
 const prisma_service_1 = require("../prisma/prisma.service");
+const applications_module_1 = require("../applications/applications.module");
 let UsersModule = class UsersModule {
 };
 exports.UsersModule = UsersModule;
 exports.UsersModule = UsersModule = __decorate([
     (0, common_1.Module)({
-        imports: [jwt_module_1.JwtCustomModule],
+        imports: [jwt_module_1.JwtCustomModule, applications_module_1.ApplicationsModule],
         controllers: [users_controller_1.UsersController],
         providers: [users_service_1.UsersService, prisma_service_1.PrismaService],
     })

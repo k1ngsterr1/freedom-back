@@ -19,9 +19,59 @@ enum Role {
 }
 
 model User {
-  id       Int    @id @default(autoincrement())
-  email    String @unique
-  username String
-  password String
-  role     Role   @default(User)
+  id          Int          @id @default(autoincrement())
+  email       String       @unique
+  username    String
+  password    String
+  role        Role         @default(User)
+  mbti        String?
+  applications Application[]
+  vacancies      Vacancy[]
+}
+
+model Application {
+  id                  Int                @id @default(autoincrement())
+  userId              Int
+  user                User               @relation(fields: [userId], references: [id])
+  hard_skills         String[]
+  soft_skills         String[]
+  formatOfWork        String?
+  employmentType      String?
+  experience          Float?
+  salary              Int[]
+  position            String?
+  location            String?
+  additional          String[]
+  summary             String?
+  contacts            String[]
+  evaluation          Float?
+  applicationVacancies ApplicationVacancy[]
+}
+
+model Vacancy {
+  id              Int                @id @default(autoincrement())
+  userId              Int
+  user                User               @relation(fields: [userId], references: [id])
+  title           String?
+  description     String?
+  hard_skills     String[]
+  soft_skills     String[]
+  formatOfWork    String[]      
+  employmentType  String?            
+  salary          Int[]
+  task            String?
+  additional      String[]           
+  contacts        String[]
+  applicationVacancies ApplicationVacancy[]
+}
+
+model ApplicationVacancy {
+  applicationId Int
+  vacancyId     Int
+  match         Float?
+
+  application   Application         @relation(fields: [applicationId], references: [id])
+  vacancy       Vacancy             @relation(fields: [vacancyId], references: [id])
+
+  @@id([applicationId, vacancyId])  
 }
