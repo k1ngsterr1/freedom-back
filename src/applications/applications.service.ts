@@ -69,9 +69,7 @@ export class ApplicationService {
 
       let applicationDataString =
         response.data.choices[0].message.content.trim();
-      console.log(applicationDataString);
 
-      // Try to parse the response as JSON
       let applicationData;
       try {
         applicationData = JSON.parse(applicationDataString);
