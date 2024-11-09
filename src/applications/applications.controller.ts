@@ -1,18 +1,7 @@
-import {
-  Body,
-  Controller,
-  Post,
-  Req,
-  UploadedFile,
-  UseGuards,
-  UseInterceptors,
-} from '@nestjs/common';
+import { Body, Controller, Post, Req, UseGuards } from '@nestjs/common';
 import { AddApplicationRequest } from './types';
 import { ApplicationService } from './applications.service';
 import { JwtAuthGuard } from 'src/jwt/jwt.guard';
-import { FileInterceptor } from '@nestjs/platform-express';
-import { diskStorage } from 'multer';
-import { pdfFileUploadOptions } from 'src/config/upload.config';
 
 @Controller('applications')
 export class ApplicationsController {

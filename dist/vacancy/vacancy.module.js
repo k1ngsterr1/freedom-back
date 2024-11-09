@@ -6,20 +6,18 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AppModule = void 0;
+exports.VacancyModule = void 0;
 const common_1 = require("@nestjs/common");
-const users_module_1 = require("./users/users.module");
-const prisma_service_1 = require("./prisma/prisma.service");
-const applications_module_1 = require("./applications/applications.module");
-const vacancy_module_1 = require("./vacancy/vacancy.module");
-let AppModule = class AppModule {
+const vacancy_service_1 = require("./vacancy.service");
+const vacancy_controller_1 = require("./vacancy.controller");
+const prisma_service_1 = require("../prisma/prisma.service");
+let VacancyModule = class VacancyModule {
 };
-exports.AppModule = AppModule;
-exports.AppModule = AppModule = __decorate([
+exports.VacancyModule = VacancyModule;
+exports.VacancyModule = VacancyModule = __decorate([
     (0, common_1.Module)({
-        imports: [users_module_1.UsersModule, applications_module_1.ApplicationsModule, vacancy_module_1.VacancyModule],
-        exports: [prisma_service_1.PrismaService],
-        providers: [prisma_service_1.PrismaService],
+        providers: [vacancy_service_1.VacancyService, prisma_service_1.PrismaService],
+        controllers: [vacancy_controller_1.VacancyController],
     })
-], AppModule);
-//# sourceMappingURL=app.module.js.map
+], VacancyModule);
+//# sourceMappingURL=vacancy.module.js.map

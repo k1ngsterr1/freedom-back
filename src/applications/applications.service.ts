@@ -32,6 +32,7 @@ export class ApplicationService {
     Your job is to divide the text into JSON fields without missing any information.
     Do not wrap the json codes in JSON markers.
     Generate JSON from this text: <start> ${text} <end>,
+    You can calculate the experience based on work_experience that must be float value,
     Use this as example as strict example of JSON format and do not add any additional fields, you must divide the text into them:
     If some of the fields are missing or empty, then use this table:
     hard_skills = [], soft_skills = [], work_experience = [], formatOfWork = "", employmentType = "", experience = null,salary = [], position = "", location = "", additional = [], summary = "", contacts = []
