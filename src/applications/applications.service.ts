@@ -25,7 +25,7 @@ export class ApplicationService {
 
   async createPdfApplication(userId: number, text: string): Promise<any> {
     try {
-      if (text.length > 5000) {
+      if (text.length > 10000) {
         throw new HttpException('Text too long', 400);
       }
       const prompt = `

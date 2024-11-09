@@ -32,7 +32,7 @@ let ApplicationService = class ApplicationService {
     }
     async createPdfApplication(userId, text) {
         try {
-            if (text.length > 5000) {
+            if (text.length > 10000) {
                 throw new common_1.HttpException('Text too long', 400);
             }
             const prompt = `
