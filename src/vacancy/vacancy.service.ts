@@ -70,7 +70,16 @@ export class VacancyService {
         },
       },
     );
-    return JSON.parse(response.data.choices[0].message.content.trim());
+    let answer: any;
+    try {
+      answer = JSON.parse(response.data.choices[0].message.content.trim());
+    } catch (error) {
+      throw new HttpException(
+        'Resume that matchs your vacancy are not found',
+        400,
+      );
+    }
+    return answer;
   }
 
   async deleteVacancy(id: number) {

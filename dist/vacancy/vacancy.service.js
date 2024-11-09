@@ -72,7 +72,14 @@ let VacancyService = class VacancyService {
                 'Content-Type': 'application/json',
             },
         });
-        return JSON.parse(response.data.choices[0].message.content.trim());
+        let answer;
+        try {
+            answer = JSON.parse(response.data.choices[0].message.content.trim());
+        }
+        catch (error) {
+            throw new common_1.HttpException('Resume that matchs your vacancy are not found', 400);
+        }
+        return answer;
     }
     async deleteVacancy(id) {
         const vacancy = await this.prisma.vacancy.delete({ where: { id: id } });
