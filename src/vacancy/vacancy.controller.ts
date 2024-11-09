@@ -13,8 +13,6 @@ import {
 import { VacancyService } from './vacancy.service';
 import { AddVacancyRequest } from './types';
 import { JwtAuthGuard } from 'src/jwt/jwt.guard';
-import axios from 'axios';
-import { ApplicationService } from 'src/applications/applications.service';
 
 @Controller('vacancies')
 export class VacancyController {
@@ -27,10 +25,10 @@ export class VacancyController {
     return await this.vacancyService.createVacancy(data);
   }
 
-  @Get('recommend')
+  @Get('recommend/:id')
   @UseGuards(JwtAuthGuard)
-  async recommendResume(@Req() req) {
-    return await this.vacancyService.recommend();
+  async recommendResume(@Param('id') id: number) {
+    return await this.vacancyService.recommend(id);
   }
 
   @Get('get')

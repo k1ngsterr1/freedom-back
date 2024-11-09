@@ -14,10 +14,12 @@ export declare class VacancyController {
         employmentType: string | null;
         salary: number[];
         task: string | null;
+        location: string | null;
         additional: string[];
         contacts: string[];
+        created_at: string | null;
     }>;
-    recommendResume(req: any): Promise<any>;
+    recommendResume(id: number): Promise<any>;
     getAllVacancies(): Promise<{
         id: number;
         userId: number;
@@ -29,8 +31,10 @@ export declare class VacancyController {
         employmentType: string | null;
         salary: number[];
         task: string | null;
+        location: string | null;
         additional: string[];
         contacts: string[];
+        created_at: string | null;
     }[]>;
     getVacancyById(id: number): Promise<void>;
     updateVacancy(id: number, data: Partial<AddVacancyRequest>): Promise<{
@@ -44,8 +48,10 @@ export declare class VacancyController {
         employmentType: string | null;
         salary: number[];
         task: string | null;
+        location: string | null;
         additional: string[];
         contacts: string[];
+        created_at: string | null;
     }>;
     deleteVacancy(id: number): Promise<{
         id: number;
@@ -58,7 +64,9 @@ export declare class VacancyController {
         employmentType: string | null;
         salary: number[];
         task: string | null;
+        location: string | null;
         additional: string[];
         contacts: string[];
+        created_at: string | null;
     }>;
 }

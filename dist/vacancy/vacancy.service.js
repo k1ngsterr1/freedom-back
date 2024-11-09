@@ -42,10 +42,16 @@ let VacancyService = class VacancyService {
         }
         return updatedVacancy;
     }
-    async recommend() {
+    async recommend(vacancyId) {
         const applications = await this.prisma.application.findMany({
             orderBy: { evaluation: 'asc' },
         });
+        const vacancy = await this.prisma.vacancy.findFirst({
+            where: { id: vacancyId },
+        });
+        if (!vacancy) {
+            throw new common_1.HttpException('Vacancy not found', 404);
+        }
         const prompt = `
     Your are professional HR with 30 years of experience, your are the best at hiring the best workers for every position based on given requirements of the job and workers applications data;
     Do not wrap the json codes in JSON markers;

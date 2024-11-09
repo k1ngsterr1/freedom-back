@@ -62,8 +62,11 @@ model Vacancy {
   employmentType  String?            
   salary          Int[] @default([])
   task            String?
+  requirements    String[] @default([])
+  location        String?
   additional      String[] @default([])         
   contacts        String[] @default([])
+  created_at      String?
   applicationVacancies ApplicationVacancy[]
 }
 

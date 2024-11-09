@@ -47,7 +47,7 @@ let UsersService = class UsersService {
         }
         const validPassword = await bcrypt.compare(password, user.password);
         if (!validPassword) {
-            throw new common_1.HttpException('Invalid credentials', 401);
+            throw new common_1.HttpException('Invalid credentials', 400);
         }
         return {
             accessToken: await this.jwt.generateToken({ id: user.id, email: user.email }, 'access'),

@@ -14,8 +14,10 @@ export declare class VacancyService {
         employmentType: string | null;
         salary: number[];
         task: string | null;
+        location: string | null;
         additional: string[];
         contacts: string[];
+        created_at: string | null;
     }>;
     findAll(): Promise<{
         id: number;
@@ -28,8 +30,10 @@ export declare class VacancyService {
         employmentType: string | null;
         salary: number[];
         task: string | null;
+        location: string | null;
         additional: string[];
         contacts: string[];
+        created_at: string | null;
     }[]>;
     findOne(id: number): Promise<void>;
     updateVacancy(id: number, data: Partial<AddVacancyRequest>): Promise<{
@@ -43,10 +47,12 @@ export declare class VacancyService {
         employmentType: string | null;
         salary: number[];
         task: string | null;
+        location: string | null;
         additional: string[];
         contacts: string[];
+        created_at: string | null;
     }>;
-    recommend(): Promise<any>;
+    recommend(vacancyId: number): Promise<any>;
     deleteVacancy(id: number): Promise<{
         id: number;
         userId: number;
@@ -58,7 +64,9 @@ export declare class VacancyService {
         employmentType: string | null;
         salary: number[];
         task: string | null;
+        location: string | null;
         additional: string[];
         contacts: string[];
+        created_at: string | null;
     }>;
 }
