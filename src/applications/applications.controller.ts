@@ -27,7 +27,7 @@ export class ApplicationsController {
 
   @Post('add-pdf')
   @UseGuards(JwtAuthGuard)
-  async addPdfApplication(@Req() req, @Body() text) {
-    return this.applicationService.createPdfApplication(req.user.id, text);
+  async addPdfApplication(@Req() req, @Body() data: { text: string }) {
+    return this.applicationService.createPdfApplication(req.user.id, data.text);
   }
 }

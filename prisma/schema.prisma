@@ -31,22 +31,24 @@ model User {
 
 model Application {
   id                  Int                @id @default(autoincrement())
-  userId              Int
-  user                User               @relation(fields: [userId], references: [id])
-  hard_skills         String[]
-  soft_skills         String[]
+  userId              Int?
+  user                User?              @relation(fields: [userId], references: [id])
+  hard_skills         String[]           @default([]) // Initialize with an empty array by default
+  soft_skills         String[]           @default([])
+  work_experience     String[]           @default([])
   formatOfWork        String?
   employmentType      String?
   experience          Float?
-  salary              Int[]
+  salary              Int[]              @default([])
   position            String?
   location            String?
-  additional          String[]
+  additional          String[]           @default([])
   summary             String?
-  contacts            String[]
+  contacts            String[]           @default([])
   evaluation          Float?
   applicationVacancies ApplicationVacancy[]
 }
+
 
 model Vacancy {
   id              Int                @id @default(autoincrement())
@@ -54,14 +56,14 @@ model Vacancy {
   user                User               @relation(fields: [userId], references: [id])
   title           String?
   description     String?
-  hard_skills     String[]
-  soft_skills     String[]
-  formatOfWork    String[]      
+  hard_skills     String[] @default([])
+  soft_skills     String[] @default([])
+  formatOfWork    String[] @default([])    
   employmentType  String?            
-  salary          Int[]
+  salary          Int[] @default([])
   task            String?
-  additional      String[]           
-  contacts        String[]
+  additional      String[] @default([])         
+  contacts        String[] @default([])
   applicationVacancies ApplicationVacancy[]
 }
 

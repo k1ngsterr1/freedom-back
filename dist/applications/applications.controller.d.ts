@@ -5,9 +5,10 @@ export declare class ApplicationsController {
     constructor(applicationService: ApplicationService);
     addApplication(data: AddApplicationRequest, req: any): Promise<{
         id: number;
-        userId: number;
+        userId: number | null;
         hard_skills: string[];
         soft_skills: string[];
+        work_experience: string[];
         formatOfWork: string | null;
         employmentType: string | null;
         experience: number | null;
@@ -19,5 +20,7 @@ export declare class ApplicationsController {
         contacts: string[];
         evaluation: number | null;
     }>;
-    addPdfApplication(req: any, text: any): Promise<any>;
+    addPdfApplication(req: any, data: {
+        text: string;
+    }): Promise<any>;
 }

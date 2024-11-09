@@ -24,8 +24,8 @@ let ApplicationsController = class ApplicationsController {
         data.userId = req.user.id;
         return this.applicationService.createApplication(data);
     }
-    async addPdfApplication(req, text) {
-        return this.applicationService.createPdfApplication(req.user.id, text);
+    async addPdfApplication(req, data) {
+        return this.applicationService.createPdfApplication(req.user.id, data.text);
     }
 };
 exports.ApplicationsController = ApplicationsController;

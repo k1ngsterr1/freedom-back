@@ -33,9 +33,12 @@ let ApplicationService = class ApplicationService {
     async createPdfApplication(userId, text) {
         try {
             const prompt = `
-    Your are best worker to convert text to JSON and string.
-    Generate JSON data from this text ${text},
-    Your JSON structure must look like following:
+    Your job is to divide the text into JSON fields without missing any information.
+    Do not wrap the json codes in JSON markers.
+    Generate JSON from this text: <start> ${text} <end>,
+    Use this as example as strict example of JSON format and do not add any additional fields, you must divide the text into them:
+    If some of the fields are missing or empty, then use this table:
+    hard_skills = [], soft_skills = [], work_experience = [], formatOfWork = "", employmentType = "", experience = null,salary = [], position = "", location = "", additional = [], summary = "", contacts = []
     {
       "hard_skills": ["React", "Node.js", "TypeScript"],
       "soft_skills": ["Teamwork", "Problem-solving"],
@@ -47,11 +50,33 @@ let ApplicationService = class ApplicationService {
       "location": "Russia",
       "additional": ["Kazakh (Native)", "English (Advanced)"],
       "summary": "Motivated developer looking for long-term opportunities in frontend development.",
-      "contacts": ["https://t.me/startraveller", "GitHub: available on request"]
+      "work_experience": [
+"
+Full Stack Developer
+Showtime Mafia | https://mafshow.kz
+2023 
+Developed backend RESTful APIs using Express.js with TypeScript.
+Implemented Redis caching to enhance data retrieval performance.
+Integrated WebSockets for real-time communication, enabling live chat and room generation for online Mafia gameplay.
+Managed PostgreSQL databases using Sequelize ORM on Railway hosting platform.
+Utilized VideoSDK for real-time multi-user camera connections on both frontend (React with Astro) and backend.
+Created an admin panel for superusers, including image authentication for user verification.
+Ensured security through JWT authentication and CORS policies.
+",
+"
+Backend Developer
+Spark Studio | https://sparkstudio.kz
+2024 
+Integrated frontend components built with Ant Design into the backend infrastructure.
+Configured Nginx with reverse proxy and load balancing to improve performance on multiple servers managed with PM2.
+Developed RESTful APIs using Express.js with TypeScript.
+Planned future integration with Redis for caching to enhance performance.
+Managed PostgreSQL databases using Sequelize ORM.
+"
+]
+      ]
+      "contacts": ["https://t.me/startraveller", "erlanzh.gg@gmail.com"]
     }
-    If all the fields are empty provide text like this: "Your pdf file is invalid."
-    Strict answer as JSON format or the "Your pdf file is invalid." text
-    Do not wrap the json codes in JSON markers"
     `;
             const response = await axios_1.default.post('https://api.openai.com/v1/chat/completions', {
                 model: 'gpt-4o',
@@ -68,6 +93,7 @@ let ApplicationService = class ApplicationService {
                 },
             });
             let applicationDataString = response.data.choices[0].message.content.trim();
+            console.log(applicationDataString);
             let applicationData;
             try {
                 applicationData = JSON.parse(applicationDataString);
@@ -78,7 +104,12 @@ let ApplicationService = class ApplicationService {
             applicationData.evaluation =
                 await this.evaluateApplication(applicationData);
             const createdApplication = await this.prisma.application.create({
-                data: { ...applicationData, userId: userId },
+                data: {
+                    ...applicationData,
+                    user: {
+                        connect: { id: userId },
+                    },
+                },
             });
             return createdApplication;
         }
@@ -94,6 +125,7 @@ let ApplicationService = class ApplicationService {
             soft_skills: 3,
             formatOfWork: 2,
             employmentType: 2,
+            work_experience: 4,
             experience: 4,
             salary: 1,
             position: 5,
@@ -123,6 +155,17 @@ let ApplicationService = class ApplicationService {
             }
             else {
                 score += weights.experience * 0.5;
+            }
+        }
+        if (data.work_experience !== undefined && data.work_experience.length > 0) {
+            for (var i = 0; i < data.work_experience.length; i++) {
+                if (data.work_experience[i].length >= 50 &&
+                    data.work_experience[i].length <= 150) {
+                    score += weights.work_experience * 1.5;
+                }
+                else {
+                    score += weights.work_experience;
+                }
             }
         }
         if (data.salary && data.salary.length > 0) {
