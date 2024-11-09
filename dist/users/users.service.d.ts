@@ -10,8 +10,13 @@ export declare class UsersService {
         refreshToken: string;
     }>;
     login(data: LoginRequest): Promise<{
+        id: number;
+        email: string;
+        username: string;
+        password: string;
+        role: import(".prisma/client").$Enums.Role;
+        mbti: string | null;
         accessToken: string;
         refreshToken: string;
-        role: import(".prisma/client").$Enums.Role;
     }>;
 }
