@@ -5,6 +5,7 @@ import {
   Delete,
   Get,
   Param,
+  ParseIntPipe,
   Patch,
   Post,
   Req,
@@ -22,12 +23,13 @@ export class VacancyController {
   @UseGuards(JwtAuthGuard)
   async addVacancy(@Body() data: AddVacancyRequest, @Req() req) {
     data.userId = req.user.id;
+    data.created_at = new Date().toISOString().split('T')[0];
     return await this.vacancyService.createVacancy(data);
   }
 
   @Get('recommend/:id')
   @UseGuards(JwtAuthGuard)
-  async recommendResume(@Param('id') id: number) {
+  async recommendResume(@Param('id', ParseIntPipe) id: number) {
     return await this.vacancyService.recommend(id);
   }
 

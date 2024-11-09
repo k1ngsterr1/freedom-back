@@ -22,6 +22,7 @@ let VacancyController = class VacancyController {
     }
     async addVacancy(data, req) {
         data.userId = req.user.id;
+        data.created_at = new Date().toISOString().split('T')[0];
         return await this.vacancyService.createVacancy(data);
     }
     async recommendResume(id) {
@@ -53,7 +54,7 @@ __decorate([
 __decorate([
     (0, common_1.Get)('recommend/:id'),
     (0, common_1.UseGuards)(jwt_guard_1.JwtAuthGuard),
-    __param(0, (0, common_1.Param)('id')),
+    __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)

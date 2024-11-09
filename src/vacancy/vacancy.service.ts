@@ -37,9 +37,7 @@ export class VacancyService {
     return updatedVacancy;
   }
   async recommend(vacancyId: number) {
-    const applications = await this.prisma.application.findMany({
-      orderBy: { evaluation: 'asc' },
-    });
+    const applications = await this.prisma.application.findMany();
     const vacancy = await this.prisma.vacancy.findFirst({
       where: { id: vacancyId },
     });
@@ -49,8 +47,9 @@ export class VacancyService {
     const prompt = `
     Your are professional HR with 30 years of experience, your are the best at hiring the best workers for every position based on given requirements of the job and workers applications data;
     Do not wrap the json codes in JSON markers;
-    You need to sort top 10 best applications from all the applications;
-    Applications data: <start> ${applications} <end>;
+    You need to sort top 3 best applications from all the applications;
+    Applications data: <start> ${JSON.stringify(applications)} <end>;
+    Vacancy data: <start> ${JSON.stringify(vacancy)} <end>;
     Your answer must be the list of these applications;
     `;
     const response = await axios.post(

@@ -14,6 +14,7 @@ export declare class VacancyService {
         employmentType: string | null;
         salary: number[];
         task: string | null;
+        requirements: string[];
         location: string | null;
         additional: string[];
         contacts: string[];
@@ -30,6 +31,7 @@ export declare class VacancyService {
         employmentType: string | null;
         salary: number[];
         task: string | null;
+        requirements: string[];
         location: string | null;
         additional: string[];
         contacts: string[];
@@ -47,6 +49,7 @@ export declare class VacancyService {
         employmentType: string | null;
         salary: number[];
         task: string | null;
+        requirements: string[];
         location: string | null;
         additional: string[];
         contacts: string[];
@@ -64,6 +67,7 @@ export declare class VacancyService {
         employmentType: string | null;
         salary: number[];
         task: string | null;
+        requirements: string[];
         location: string | null;
         additional: string[];
         contacts: string[];
