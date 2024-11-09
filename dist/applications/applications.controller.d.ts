@@ -8,16 +8,16 @@ export declare class ApplicationsController {
         userId: number | null;
         hard_skills: string[];
         soft_skills: string[];
-        work_experience: string[];
         formatOfWork: string | null;
         employmentType: string | null;
-        experience: number | null;
         salary: number[];
+        additional: string[];
+        contacts: string[];
+        work_experience: string[];
+        experience: number | null;
         position: string | null;
         location: string | null;
-        additional: string[];
         summary: string | null;
-        contacts: string[];
         evaluation: number | null;
     }>;
     addPdfApplication(req: any, data: {

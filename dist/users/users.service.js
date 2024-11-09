@@ -52,6 +52,7 @@ let UsersService = class UsersService {
         return {
             accessToken: await this.jwt.generateToken({ id: user.id, email: user.email }, 'access'),
             refreshToken: await this.jwt.generateToken({ id: user.id, email: user.email }, 'refresh'),
+            role: user.role,
         };
     }
 };

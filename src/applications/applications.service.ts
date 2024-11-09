@@ -98,8 +98,6 @@ Managed PostgreSQL databases using Sequelize ORM.
 
       let applicationDataString =
         response.data.choices[0].message.content.trim();
-      console.log(applicationDataString);
-
       let applicationData: any;
       try {
         applicationData = JSON.parse(applicationDataString);
@@ -124,6 +122,11 @@ Managed PostgreSQL databases using Sequelize ORM.
       console.error('Error in createPdfApplication:', error);
       throw error;
     }
+  }
+  async getAllApplicationsOrderedByEvaluation(page: number = 1) {
+    return await this.prisma.application.findMany({
+      orderBy: { evaluation: 'asc' },
+    });
   }
 
   async evaluateApplication(data: AddApplicationRequest): Promise<number> {

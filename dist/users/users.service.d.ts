@@ -12,5 +12,6 @@ export declare class UsersService {
     login(data: LoginRequest): Promise<{
         accessToken: string;
         refreshToken: string;
+        role: import(".prisma/client").$Enums.Role;
     }>;
 }

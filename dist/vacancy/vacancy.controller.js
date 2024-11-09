@@ -24,6 +24,9 @@ let VacancyController = class VacancyController {
         data.userId = req.user.id;
         return await this.vacancyService.createVacancy(data);
     }
+    async recommendResume(req) {
+        return await this.vacancyService.recommend();
+    }
     async getAllVacancies() {
         return this.vacancyService.findAll();
     }
@@ -47,6 +50,14 @@ __decorate([
     __metadata("design:paramtypes", [Object, Object]),
     __metadata("design:returntype", Promise)
 ], VacancyController.prototype, "addVacancy", null);
+__decorate([
+    (0, common_1.Get)('recommend'),
+    (0, common_1.UseGuards)(jwt_guard_1.JwtAuthGuard),
+    __param(0, (0, common_1.Req)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], VacancyController.prototype, "recommendResume", null);
 __decorate([
     (0, common_1.Get)('get'),
     __metadata("design:type", Function),

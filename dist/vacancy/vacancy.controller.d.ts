@@ -17,6 +17,7 @@ export declare class VacancyController {
         additional: string[];
         contacts: string[];
     }>;
+    recommendResume(req: any): Promise<any>;
     getAllVacancies(): Promise<{
         id: number;
         userId: number;

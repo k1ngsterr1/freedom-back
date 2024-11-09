@@ -11,12 +11,13 @@ const common_1 = require("@nestjs/common");
 const vacancy_service_1 = require("./vacancy.service");
 const vacancy_controller_1 = require("./vacancy.controller");
 const prisma_service_1 = require("../prisma/prisma.service");
+const applications_service_1 = require("../applications/applications.service");
 let VacancyModule = class VacancyModule {
 };
 exports.VacancyModule = VacancyModule;
 exports.VacancyModule = VacancyModule = __decorate([
     (0, common_1.Module)({
-        providers: [vacancy_service_1.VacancyService, prisma_service_1.PrismaService],
+        providers: [vacancy_service_1.VacancyService, prisma_service_1.PrismaService, applications_service_1.ApplicationService],
         controllers: [vacancy_controller_1.VacancyController],
     })
 ], VacancyModule);

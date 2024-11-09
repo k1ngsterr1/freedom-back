@@ -60,6 +60,7 @@ export class UsersService {
         { id: user.id, email: user.email },
         'refresh',
       ),
+      role: user.role,
     };
   }
 }

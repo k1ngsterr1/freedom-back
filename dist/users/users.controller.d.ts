@@ -10,5 +10,6 @@ export declare class UsersController {
     login(data: LoginRequest): Promise<{
         accessToken: string;
         refreshToken: string;
+        role: import(".prisma/client").$Enums.Role;
     }>;
 }
