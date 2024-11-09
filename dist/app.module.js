@@ -12,12 +12,13 @@ const users_module_1 = require("./users/users.module");
 const prisma_service_1 = require("./prisma/prisma.service");
 const applications_module_1 = require("./applications/applications.module");
 const vacancy_module_1 = require("./vacancy/vacancy.module");
+const chat_module_1 = require("./chat/chat.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
-        imports: [users_module_1.UsersModule, applications_module_1.ApplicationsModule, vacancy_module_1.VacancyModule],
+        imports: [users_module_1.UsersModule, applications_module_1.ApplicationsModule, vacancy_module_1.VacancyModule, chat_module_1.ChatModule],
         exports: [prisma_service_1.PrismaService],
         providers: [prisma_service_1.PrismaService],
     })

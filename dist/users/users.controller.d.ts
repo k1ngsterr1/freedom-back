@@ -4,15 +4,21 @@ export declare class UsersController {
     private readonly usersService;
     constructor(usersService: UsersService);
     register(data: RegisterRequest): Promise<{
-        accessToken: string;
-        refreshToken: string;
-    }>;
-    login(data: LoginRequest): Promise<{
-        id: number;
         email: string;
         username: string;
         password: string;
         role: import(".prisma/client").$Enums.Role;
+        id: number;
+        mbti: string | null;
+        accessToken: string;
+        refreshToken: string;
+    }>;
+    login(data: LoginRequest): Promise<{
+        email: string;
+        username: string;
+        password: string;
+        role: import(".prisma/client").$Enums.Role;
+        id: number;
         mbti: string | null;
         accessToken: string;
         refreshToken: string;

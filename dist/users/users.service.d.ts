@@ -6,15 +6,21 @@ export declare class UsersService {
     private readonly jwt;
     constructor(prisma: PrismaService, jwt: JwtService);
     register(data: RegisterRequest): Promise<{
-        accessToken: string;
-        refreshToken: string;
-    }>;
-    login(data: LoginRequest): Promise<{
-        id: number;
         email: string;
         username: string;
         password: string;
         role: import(".prisma/client").$Enums.Role;
+        id: number;
+        mbti: string | null;
+        accessToken: string;
+        refreshToken: string;
+    }>;
+    login(data: LoginRequest): Promise<{
+        email: string;
+        username: string;
+        password: string;
+        role: import(".prisma/client").$Enums.Role;
+        id: number;
         mbti: string | null;
         accessToken: string;
         refreshToken: string;

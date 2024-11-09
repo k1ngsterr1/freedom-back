@@ -39,6 +39,7 @@ export class UsersService {
         { id: user.id, email: user.email },
         'refresh',
       ),
+      ...user,
     };
   }
   async login(data: LoginRequest) {
