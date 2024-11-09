@@ -32,6 +32,9 @@ let ApplicationService = class ApplicationService {
     }
     async createPdfApplication(userId, text) {
         try {
+            if (text.length > 5000) {
+                throw new common_1.HttpException('Text too long', 400);
+            }
             const prompt = `
     Your job is to divide the text into JSON fields without missing any information.
     Do not wrap the json codes in JSON markers.
