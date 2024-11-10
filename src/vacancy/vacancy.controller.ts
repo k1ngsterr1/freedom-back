@@ -40,7 +40,7 @@ export class VacancyController {
 
   @Get('get/:id')
   async getVacancyById(@Param('id') id: number) {
-    return this.vacancyService.findOne(id);
+    return this.vacancyService.findOne(Number(id));
   }
 
   @Patch('update/:id')
