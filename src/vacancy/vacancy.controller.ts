@@ -39,7 +39,7 @@ export class VacancyController {
   }
 
   @Get('get/:id')
-  async getVacancyById(@Param('id') id: number) {
+  async getVacancyById(@Param('id', ParseIntPipe) id: number) {
     return this.vacancyService.findOne(id);
   }
 

@@ -30,7 +30,7 @@ let VacancyService = class VacancyService {
         if (!vacancy) {
             throw new common_1.HttpException('Not found', 404);
         }
-        return;
+        return vacancy;
     }
     async updateVacancy(id, data) {
         const updatedVacancy = await this.prisma.vacancy.update({

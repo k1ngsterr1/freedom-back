@@ -23,7 +23,7 @@ export class VacancyService {
     if (!vacancy) {
       throw new HttpException('Not found', 404);
     }
-    return;
+    return vacancy;
   }
 
   async updateVacancy(id: number, data: Partial<AddVacancyRequest>) {
