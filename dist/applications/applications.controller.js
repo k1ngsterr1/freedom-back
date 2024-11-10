@@ -27,6 +27,9 @@ let ApplicationsController = class ApplicationsController {
     async addPdfApplication(req, data) {
         return this.applicationService.createPdfApplication(req.user.id, data.text);
     }
+    async getApplicationById(id) {
+        return this.applicationService.findOne(id);
+    }
 };
 exports.ApplicationsController = ApplicationsController;
 __decorate([
@@ -47,6 +50,13 @@ __decorate([
     __metadata("design:paramtypes", [Object, Object]),
     __metadata("design:returntype", Promise)
 ], ApplicationsController.prototype, "addPdfApplication", null);
+__decorate([
+    (0, common_1.Get)('get/:id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", Promise)
+], ApplicationsController.prototype, "getApplicationById", null);
 exports.ApplicationsController = ApplicationsController = __decorate([
     (0, common_1.Controller)('applications'),
     __metadata("design:paramtypes", [applications_service_1.ApplicationService])

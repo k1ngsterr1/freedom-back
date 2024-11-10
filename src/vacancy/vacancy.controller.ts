@@ -33,7 +33,13 @@ export class VacancyController {
     return await this.vacancyService.recommend(id);
   }
 
-  @Get('get')
+  @Get('get/user')
+  @UseGuards(JwtAuthGuard)
+  async getAllMyVacancies(@Req() req) {
+    return this.vacancyService.findAllByUserId(req.user.id);
+  }
+
+  @Get('get/')
   async getAllVacancies() {
     return this.vacancyService.findAll();
   }

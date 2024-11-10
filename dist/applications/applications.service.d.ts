@@ -23,5 +23,6 @@ export declare class ApplicationService {
         contacts: string[];
         evaluation: number | null;
     }[]>;
+    findOne(id: number): Promise<Application>;
     evaluateApplication(data: AddApplicationRequest): Promise<number>;
 }

@@ -17,6 +17,15 @@ export class VacancyService {
     const vacancies = await this.prisma.vacancy.findMany();
     return vacancies;
   }
+  async findAllByUserId(userId: number) {
+    const vacancies = await this.prisma.vacancy.findMany({
+      where: { userId: userId },
+    });
+    if (!vacancies) {
+      throw new HttpException('Vacancies not found', 404);
+    }
+    return vacancies;
+  }
 
   async findOne(id: number) {
     const vacancy = await this.prisma.vacancy.findFirst({ where: { id: id } });

@@ -128,6 +128,15 @@ Managed PostgreSQL databases using Sequelize ORM.
       orderBy: { evaluation: 'asc' },
     });
   }
+  async findOne(id: number): Promise<Application> {
+    const application = await this.prisma.application.findFirst({
+      where: { id: id },
+    });
+    if (!application) {
+      throw new HttpException('Application Not found', 404);
+    }
+    return application;
+  }
 
   async evaluateApplication(data: AddApplicationRequest): Promise<number> {
     let score = 0;

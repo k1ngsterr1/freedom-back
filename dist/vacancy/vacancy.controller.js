@@ -28,6 +28,9 @@ let VacancyController = class VacancyController {
     async recommendResume(id) {
         return await this.vacancyService.recommend(id);
     }
+    async getAllMyVacancies(req) {
+        return this.vacancyService.findAllByUserId(req.user.id);
+    }
     async getAllVacancies() {
         return this.vacancyService.findAll();
     }
@@ -60,7 +63,15 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], VacancyController.prototype, "recommendResume", null);
 __decorate([
-    (0, common_1.Get)('get'),
+    (0, common_1.Get)('get/user'),
+    (0, common_1.UseGuards)(jwt_guard_1.JwtAuthGuard),
+    __param(0, (0, common_1.Req)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], VacancyController.prototype, "getAllMyVacancies", null);
+__decorate([
+    (0, common_1.Get)('get/'),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
